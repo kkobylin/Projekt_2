@@ -11,9 +11,17 @@ using namespace std;
 
 //ktype - parametr reprezentujacy typ klucza
 //vtype - parametr reprezentujacy typ wartosci
+
+/*template <typename ktype, typename vtype>
+class Que;
+
+template <typename ktype, typename vtype>
+bool comparison(Que <ktype, vtype> a, Que <ktype, vtype> b);*/
+
 template <typename ktype, typename vtype>
 class Que
 {
+
     /*Element kolejki zawierający klucz, wartość, wskazanie na kolejny element
     oraz wskazanie na poprzedni element*/
 
@@ -48,7 +56,7 @@ class Que
 
     friend
     bool comparison  (Que<ktype, vtype> a, Que<ktype, vtype> b )
-    {
+   {
 
     if(a.Size()!=b.Size()) return false;
 
@@ -61,13 +69,12 @@ class Que
 
     while(p)
     {
-        if(p->key==q->key && p->value==q->value)
+        if(p->key!=q->key || p->value!=q->value)
         {
-            p=p->next;
-            q=q->next;
-        }
-        else
             return false;
+        }
+        p=p->next;
+        q=q->next;
 
     }
 
@@ -76,7 +83,6 @@ class Que
     }
 
 };
-#endif
 
 
 //Konstruktor
@@ -139,6 +145,7 @@ void Que<ktype, vtype>::delet(ktype k, vtype v)
             else
             qlast=p->prev;
             delete p;
+            size--;
             found=1;
         }
 
@@ -228,3 +235,4 @@ vtype Que<ktype, vtype>::findvalue(ktype k)
         cout<<"Nie znaleziono elementu o podanym kluczu"<<endl;
 }
 
+#endif // multidictionary_definition
