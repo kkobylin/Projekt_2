@@ -12,63 +12,289 @@ Projekt 2 na PROI*/
 #include <stdio.h>
 using namespace std;
 
+/*Szablon Klasy testującej klasę Multisłownika*/
+
 template <typename ktype, typename vtype>
 class Testque
 {
-    //Que <ktype, vtype> dictionary1, dictionary2;
+    //Dwa obiekty reprezentujące multisłowniki
+    Que <ktype, vtype> dictionary1, dictionary2;
 
     public:
-       // void testadd  ();
+        int testadd  (); //metoda testująca dodawanie elementów
+        int testprint (); //metoda testująca drukowanie słownika
+        int testdelete(); // metoda testująca usuwanie elemntów
+        int testchange (); //metoda testująca podmianę wartości
+        int testfind (); // metoda testująca wyszukiwanie wartości
+        int testhowmany (); //metoda testujaca zliczanie elementow o podanym kluczu
+        int testsize (); //metoda testujaca podawanie rozmiaru slownika
+        int testcom(); //metoda testujaca porownywanie slownikow
+        void cleaning(); //metoda czyszczaca po ostatnim tescie
 
-        void testprint  (Que <ktype, vtype> dictionary1, Que <ktype, vtype> dictionary2);
-
-         void testadd  (Que <ktype, vtype> dictionary1, Que <ktype, vtype> dictionary2);
 };
 
-template <typename ktype, typename vtype>
-    void Testque <ktype, vtype>:: testadd  (Que <ktype, vtype> dictionary1, Que <ktype, vtype> dictionary2)
+    template <typename ktype, typename vtype>
+    int Testque <ktype, vtype>:: testadd  ()
     {
-
-        int wybor;
-        cout<<"Do ktorego slownika dodac pary (1 lub 2)"<<endl;
-        wybor=getch();
-
-        cout<<"Ile par dodac?"<<endl;
-        int n;
-        cin>>n;
         ktype k;
         vtype v;
-        for(int i=0;i<n;i++)
+        for(;;)
         {
-            cout<<"Podaj pare(klucz i wartosc)"<<endl;
-            cin>>k>>v;
-            //cout<<k<<v;
-            if(wybor=='1')
-                    dictionary1.add_front(k,v);
-            else
-                dictionary2.add_front(k, v);
+            char wybor;
+            cout << "1.Wstawienie nowej pary do slownika 1." << endl;
+            cout << "2.Wstawienie nowej pary do slownika 2." << endl;
+            cout << "3.Zakonczenie testu wstawiania" << endl;
+            wybor=getch();
+
+            switch(wybor)
+            {
+            case '1':
+                cout<<"Podaj pare (klucz, wartosc)"<<endl;
+                cin>>k>>v;
+                dictionary1.add_front(k,v);
+                cout<<"Gotowe"<<endl;
+                break;
+            case '2':
+                cout<<"Podaj pare (klucz, wartosc)"<<endl;
+                cin>>k>>v;
+                dictionary2.add_front(k,v);
+                cout<<"Gotowe"<<endl;
+                break;
+            case '3':
+                return 1;
+                break;
+
+            default: cout<<"Nie ma takiej opcji w menu"<<endl;
+            }
         }
-
-        cout<<"Gotowe"<<endl;
-        //return 1;
     }
 
-template <typename ktype, typename vtype>
-    void Testque <ktype, vtype>:: testprint  (Que <ktype, vtype> dictionary1, Que <ktype, vtype> dictionary2)
+    template <typename ktype, typename vtype>
+    int Testque <ktype, vtype>:: testprint  ()
     {
-        cout<<"Ktory slownik wydrukowac"<<endl;
-        int wybor;
-        wybor=getch();
+        for(;;)
+        {
+            char wybor;
+            cout << "1.Drukowanie słownika 1." << endl;
+            cout << "2.Drukowanie słownika 2." << endl;
+            cout << "3.Zakonczenie testu drukowania" << endl;
+            wybor=getch();
 
-        if(wybor=='1')
-            dictionary1.print();
-        else
-            dictionary2.print();
-
-        cout<<"Gotowe"<<endl;
-
-        //return 1;
+            switch(wybor)
+            {
+            case '1':
+                dictionary1.print();
+                cout<<"Gotowe"<<endl;
+                break;
+            case '2':
+                dictionary2.print();
+                cout<<"Gotowe"<<endl;
+                break;
+            case '3':
+                return 1;
+                break;
+            default: cout<<"Nie ma takiej opcji w menu"<<endl;
+            }
+        }
     }
 
+     template <typename ktype, typename vtype>
+    int Testque <ktype, vtype>:: testdelete()
+    {
+        ktype k;
+        vtype v;
+        for(;;)
+        {
+            char wybor;
+            cout << "1.Usuniecie elementu ze słownika 1." << endl;
+            cout << "2.Usuniecie elementu ze słownika 2." << endl;
+            cout << "3.Zakonczenie testu usuwania" << endl;
+            wybor=getch();
 
+            switch(wybor)
+            {
+            case '1':
+                cout<<"Podaj klucz oraz wartość pary która chcesz usunąć"<<endl;
+                cin>>k>>v;
+                dictionary1.delet(k,v);
+                cout<<"Gotowe"<<endl;
+                break;
+            case '2':
+                cout<<"Podaj klucz oraz wartość pary która chcesz usunąć"<<endl;
+                cin>>k>>v;
+                dictionary2.delet(k,v);
+                cout<<"Gotowe"<<endl;
+                break;
+            case '3':
+                return 1;
+                break;
+            default: cout<<"Nie ma takiej opcji w menu"<<endl;
+            }
+        }
+    }
+
+    template <typename ktype, typename vtype>
+    int Testque <ktype, vtype>:: testchange()
+    {
+        ktype k;
+        vtype v;
+        for(;;)
+        {
+            char wybor;
+            cout << "1.Zmiana wartosci ze slownika 1." << endl;
+            cout << "2.Zmiana wartosci ze slownika 2." << endl;
+            cout << "3.Zakonczenie testu zmiany wartosci" << endl;
+            wybor=getch();
+
+            switch(wybor)
+            {
+            case '1':
+                cout<<"Podaj klucz elementu ktory chcesz zmienic oraz nowa wartosc"<<endl;
+                cin>>k>>v;
+                dictionary1.change(k,v);
+                cout<<"Gotowe"<<endl;
+                break;
+            case '2':
+                cout<<"Podaj klucz elementu ktory chcesz zmienic oraz nowa wartosc"<<endl;
+                cin>>k>>v;
+                dictionary2.change(k,v);
+                cout<<"Gotowe"<<endl;
+                break;
+            case '3':
+                return 1;
+                break;
+            default: cout<<"Nie ma takiej opcji w menu"<<endl;
+            }
+        }
+    }
+
+    template <typename ktype, typename vtype>
+    int Testque <ktype, vtype>:: testfind()
+    {
+        ktype k;
+        for(;;)
+        {
+            char wybor;
+            cout << "1.Zmiana wartosci ze słownika 1." << endl;
+            cout << "2.Zmiana wartosci ze słownika 2." << endl;
+            cout << "3.Zakonczenie testu wyszukiwania wartosci" << endl;
+            wybor=getch();
+
+            switch(wybor)
+            {
+            case '1':
+                cout<<"Podaj klucz elementu ktorego wartosc chcesz odczytac"<<endl;
+                cin>>k;
+                dictionary1.findvalue(k);
+                cout<<"Gotowe"<<endl;
+                break;
+            case '2':
+                cout<<"Podaj klucz elementu ktorego wartosc chcesz odczytac"<<endl;
+                cin>>k;
+                dictionary2.findvalue(k);
+                cout<<"Gotowe"<<endl;
+                break;
+            case '3':
+                return 1;
+                break;
+            default: cout<<"Nie ma takiej opcji w menu"<<endl;
+            }
+        }
+    }
+
+    template <typename ktype, typename vtype>
+    int Testque <ktype, vtype>:: testhowmany()
+    {
+        ktype k;
+        for(;;)
+        {
+            char wybor;
+            cout << "1.Podanie liczby elementow o zadanym kluczu ze słownika 1." << endl;
+            cout << "2.Podanie liczby elementow o zadanym kluczu ze słownika 2." << endl;
+            cout << "3.Zakonczenie testu zliczania elementow" << endl;
+            wybor=getch();
+
+            switch(wybor)
+            {
+            case '1':
+                cout<<"Podaj klucz"<<endl;
+                cin>>k;
+                dictionary1.howmany(k);
+                cout<<"Gotowe"<<endl;
+                break;
+            case '2':
+                cout<<"Podaj klucz"<<endl;
+                cin>>k;
+                dictionary2.howmany(k);
+                cout<<"Gotowe"<<endl;
+                break;
+            case '3':
+                return 1;
+                break;
+            default: cout<<"Nie ma takiej opcji w menu"<<endl;
+            }
+        }
+    }
+
+    template <typename ktype, typename vtype>
+    int Testque <ktype, vtype>:: testsize()
+    {
+        for(;;)
+        {
+            char wybor;
+            cout << "1.Podanie rozmiaru słownika 1." << endl;
+            cout << "2.Podanie rozmiaru słownika 2." << endl;
+            cout << "3.Zakonczenie testu podawania rozmiaru slownika" << endl;
+            wybor=getch();
+
+            switch(wybor)
+            {
+            case '1':
+                dictionary1.Size();
+                cout<<"Gotowe"<<endl;
+                break;
+            case '2':
+                dictionary2.Size();
+                cout<<"Gotowe"<<endl;
+                break;
+            case '3':
+                return 1;
+                break;
+            default: cout<<"Nie ma takiej opcji w menu"<<endl;
+            }
+        }
+    }
+
+    template <typename ktype, typename vtype>
+    int Testque <ktype, vtype>:: testcom()
+    {
+        for(;;)
+        {
+            char wybor;
+            cout << "1.Porownanie slownika 1 i 2" << endl;
+            cout << "2.Zakonczenie testu porownywania" << endl;
+            wybor=getch();
+
+            switch(wybor)
+            {
+            case '1':
+                if(comparison(dictionary1, dictionary2))
+                    cout<<"Slowniki sa takie same"<<endl;
+                else
+                    cout<<"Slowniki sa rozne"<<endl;
+
+                break;
+            case '2':
+                return 1;
+            default: cout<<"Nie ma takiej opcji w menu"<<endl;
+            }
+        }
+    }
+
+    template <typename ktype, typename vtype>
+    void Testque <ktype, vtype>:: cleaning()
+    {
+        dictionary1.~Que();
+        dictionary2.~Que();
+    }
 #endif
