@@ -19,13 +19,13 @@ class Testit
 
     public:
         bool testadd  (); //metoda testująca dodawanie elementów
-        bool testprint (); //metoda testująca drukowanie słownika
+        void testprint (); //metoda testująca drukowanie słownika
         bool testdelete(); // metoda testująca usuwanie elemntów
         bool testchange (); //metoda testująca podmianę wartości
         bool testfind (); // metoda testująca wyszukiwanie wartości
         bool testhowmany (); //metoda testujaca zliczanie elementow o podanym kluczu
         bool testsize (); //metoda testujaca podawanie rozmiaru slownika
-       // bool testcom(); //metoda testujaca porownywanie slownikow
+        bool testcom(); //metoda testujaca porownywanie slownikow
         void cleaning(); //metoda czyszczaca po ostatnim tescie
 
 };
