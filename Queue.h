@@ -98,12 +98,15 @@ Que<ktype, vtype>::Que()
 template <typename ktype, typename vtype>
 Que<ktype, vtype>::~Que()
 {
-    Element * p;
-    while(qfirst)
+    Element <ktype, vtype> * p;
+
+    while (qfirst)
     {
-        p=qfirst->next;
-        delete qfirst;
-        qfirst = p;
+        p=qfirst;
+        if(!qfirst->next)
+            break;
+        qfirst=qfirst->next;
+        delete p;
     }
 }
 
