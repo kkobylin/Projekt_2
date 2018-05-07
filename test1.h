@@ -6,7 +6,6 @@ Projekt 2 na PROI*/
 
 #include <iostream>
 #include "Queue.h"
-#include "vector.h"
 using namespace std;
 
 /*Szablon Klasy testującej klasę Multisłownika <int, string>*/
@@ -18,7 +17,7 @@ class Testis
 
     public:
         bool testadd  (); //metoda testująca dodawanie elementów
-        bool testprint (); //metoda testująca drukowanie słownika
+        void testprint (); //metoda testująca drukowanie słownika
         bool testdelete(); // metoda testująca usuwanie elemntów
         bool testchange (); //metoda testująca podmianę wartości
         bool testfind (); // metoda testująca wyszukiwanie wartości
