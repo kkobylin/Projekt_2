@@ -12,17 +12,11 @@ using namespace std;
 //ktype - parametr reprezentujacy typ klucza
 //vtype - parametr reprezentujacy typ wartosci
 
-/*template <typename ktype, typename vtype>
-class Que;
-
-template <typename ktype, typename vtype>
-bool comparison(Que <ktype, vtype> a, Que <ktype, vtype> b);*/
-
 template <typename ktype, typename vtype>
 class Que
 {
 
-    /*Element kolejki zawierający klucz, wartość, wskazanie na kolejny element
+    /*Element slownika zawierający klucz, wartość, wskazanie na kolejny element
     oraz wskazanie na poprzedni element*/
 
     struct Element
@@ -31,12 +25,15 @@ class Que
         ktype key;
         vtype value;
         Element(ktype k,vtype v):key(k), value(v), next(nullptr), prev(nullptr){}
+
     };
 
-    //Pierwszy i ostatni element kolejki
+    //Pierwszy i ostatni element listy
 
     Element *qfirst, *qlast;
-    //Rozmiar kolejki
+
+    //Rozmiar listy
+
     int size;
 
     public:
@@ -44,7 +41,6 @@ class Que
     Que();  //konstruktor
     ~Que(); //destruktor
     void add_front(ktype, vtype); //dodawanie na poczatek
-    //void add_back(ktype, vtype); //dodawanie na koniec
     void delet(ktype, vtype); //usuwanie danego elementu
     void change(ktype, vtype); //Zmiana wartosci wskazywanej przez klucz
     vtype findvalue(ktype); //Wyszukanie wartosci dla danego klucza
@@ -55,18 +51,20 @@ class Que
     //Zaprzyjazniona funkcja porownujaca dwa slowniki
 
     friend
-    bool comparison  (Que<ktype, vtype> a, Que<ktype, vtype> b )
+    bool comparison  (Que<ktype, vtype>  &a, Que<ktype, vtype>  &b )
    {
 
+    //Jesli rozmiary slownikow rozne, zwracamy 0
     if(a.Size()!=b.Size()) return false;
 
-
+    //Wskazniki na pierwsze elementy slownika a i slownika b
     Element  *p, *q;
     p=a.qfirst;
 
     q=b.qfirst;
 
-
+    //Poruszamy sie po calym slowniku i sprawdzamy czy klucze i wartosci elementow
+    //sa identyczne
     while(p)
     {
         if(p->key!=q->key || p->value!=q->value)
@@ -77,7 +75,8 @@ class Que
         q=q->next;
 
     }
-
+    
+    //Zwracamy prawde jesli nie znalezlismy roznicy
     return true;
 
     }
@@ -97,13 +96,18 @@ Que<ktype, vtype>::Que()
 template <typename ktype, typename vtype>
 Que<ktype, vtype>::~Que()
 {
-    Element * p;
-    while(qfirst)
+    //Zwalniamy pamiec elementow listy od poczatku 
+    Element  * p;
+    while (qfirst)
     {
-        p=qfirst->next;
-        delete qfirst;
-        qfirst = p;
+        p=qfirst;
+        if(!qfirst->next)
+                break;
+        qfirst=qfirst->next;
+        delete p;
     }
+delete qfirst;
+qfirst=nullptr;
 }
 
 
@@ -111,7 +115,7 @@ Que<ktype, vtype>::~Que()
 template <typename ktype, typename vtype>
 void Que<ktype, vtype>::add_front(ktype k, vtype v)
 {
-    Element* newElement = new Element(k, v); //alokowanie pamieci na nowy element
+   Element* newElement = new Element(k, v); //alokowanie pamieci na nowy element
     if(this->qfirst == nullptr) this->qfirst = newElement; //Jesli kolejka pusta
     else
     {
@@ -136,19 +140,23 @@ void Que<ktype, vtype>::delet(ktype k, vtype v)
         //Szukanie danej pary do usuniecia
         if(p->key==k && p->value==v)
         {
+            
             if(p->prev)
             p->prev->next=p->next;
             else
             qfirst=p->next;
+
             if(p->next)
             p->next->prev=p->prev;
             else
             qlast=p->prev;
+
             delete p;
+            p=nullptr;
             size--;
             found=1;
+            break;
         }
-
         p=p->next;
     }
 
@@ -178,7 +186,7 @@ void Que<ktype, vtype>::change(ktype k, vtype v)
 }
 
 
-//Zliczanie ilosci elementow o podanym kluczu?
+//Zliczanie ilosci elementow o podanym kluczu
 template <typename ktype, typename vtype>
 int Que<ktype, vtype>::howmany(ktype k)
 {
