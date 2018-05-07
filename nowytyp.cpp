@@ -1,13 +1,17 @@
+/*Krzysztof Kobyliñski
+Projekt 2 na PROI*/
 #include "nowytyp.h"
 #include <iostream>
 using namespace std;
 
+//Konstruktor klasy
 Type::Type(char z,double i)
 {
     znak=z;
     indeks=i;
 }
 
+//Przeciazenie operatora == dla klasy
 bool Type::operator==(Type const &v)
 {
 
@@ -17,6 +21,7 @@ bool Type::operator==(Type const &v)
         return 0;
 }
 
+//Przeciazenie operatora = dla klasy
 void Type::operator=(Type const &v)
 {
     znak=v.znak;
@@ -25,6 +30,7 @@ void Type::operator=(Type const &v)
 
 }
 
+//Przeciazenie operatora << dla klasy
 ostream& operator<< (ostream &os, const Type &v)
 {
 
@@ -34,6 +40,7 @@ ostream& operator<< (ostream &os, const Type &v)
     return os;
 }
 
+//Przeciazenie operatora != dla klasy
 bool Type::operator!=(Type const &v)
 {
 
