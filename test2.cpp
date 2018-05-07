@@ -1,3 +1,5 @@
+/*Krzysztof Kobyliñski
+Projekt 2 na PROI*/
 #include <iostream>
 #include "test2.h"
 
