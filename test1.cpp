@@ -1,3 +1,5 @@
+/*Krzysztof Kobyliñski
+Projekt 2 na PROI*/
 #include <iostream>
 #include "test1.h"
 
@@ -14,21 +16,12 @@ bool Testis:: testadd  ()
         else
             return 0;
     }
-/*
-bool Testis:: testprint  ()
+
+void Testis:: testprint  ()
     {
-        dictionary1.add_front(5, "Wydrukowana tresc");
-
-        ostream os;
         dictionary1.print();
-        os<<"5 Wydrukowana tresc";
-
-        if(os==cout)
-            return 1;
-        else
-            return 0;
+        dictionary2.print();
     }
-*/
 
 bool Testis:: testdelete()
 {
@@ -72,17 +65,12 @@ bool Testis:: testsize()
     else
         return 0;
 }
-/*
+
 bool Testis:: testcom()
 {
     dictionary2.add_front(5, "Czwarty");
     dictionary2.add_front(9, "Trzeci");
     dictionary2.add_front(5, "Piaty");
-    bool a;
-    a=comparison(dictionary1, dictionary2);
-   if(a==1)
-    return 1;
-   else
-    return 0;
+    return comparison(dictionary1, dictionary2);
 
-}*/
+}
