@@ -25,8 +25,7 @@ class Testit
         bool testhowmany (); //metoda testujaca zliczanie elementow o podanym kluczu
         bool testsize (); //metoda testujaca podawanie rozmiaru slownika
         bool testcom(); //metoda testujaca porownywanie slownikow
-        void cleaning(); //metoda czyszczaca po ostatnim tescie
-
+        ~Testit(); //destruktor
 };
 
 #endif
