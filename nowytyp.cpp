@@ -16,9 +16,9 @@ bool Type::operator==(Type const &v)
 {
 
     if(v.znak==znak && v.indeks==indeks)
-        return 1;
+        return true;
     else
-        return 0;
+        return false;
 }
 
 //Przeciazenie operatora = dla klasy
@@ -47,8 +47,8 @@ bool Type::operator!=(Type const &v)
 
     if(znak==v.znak && indeks==v.indeks)
 
-    return 0;
-    else return 1;
+    return false;
+    else return true;
 
 }
 
