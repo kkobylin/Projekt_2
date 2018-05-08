@@ -13,9 +13,9 @@ bool Testit:: testadd  ()
         dictionary1.add_front(9, c);
 
         if(dictionary1.findvalue(7)== b)
-            return 1;
+            return true;
         else
-            return 0;
+            return false;
     }
 
 void Testit:: testprint  ()
@@ -31,9 +31,9 @@ bool Testit:: testdelete()
    Type b('b',2.2);
     dictionary1.delet(7,b);
     if(dictionary1.Size()==3)
-        return 1;
+        return true;
     else
-        return 0;
+        return false;
 }
 
 bool Testit:: testchange()
@@ -41,18 +41,18 @@ bool Testit:: testchange()
     Type h('h', 0);
     dictionary1.change(5, h);
     if(dictionary1.findvalue(5)==h)
-        return 1;
+        return true;
     else
-        return 0;
+        return false;
 }
 
 bool Testit:: testfind()
 {
     Type c('c', 3.3);
     if(dictionary1.findvalue(9)==c)
-        return 1;
+        return true;
     else
-        return 0;
+        return false;
 }
 
 bool Testit:: testhowmany()
@@ -60,17 +60,17 @@ bool Testit:: testhowmany()
     Type d('e', 2.12);
     dictionary1.add_front(5,d);
     if(dictionary1.howmany(5)==2)
-        return 1;
+        return true;
     else
-        return 0;
+        return false;
 }
 
 bool Testit:: testsize()
 {
     if(dictionary1.Size()==4)
-        return 1;
+        return true;
     else
-        return 0;
+        return false;
 }
 
 bool Testit:: testcom()
@@ -86,7 +86,7 @@ bool Testit:: testcom()
 
 }
 
-void Testit:: cleaning()
+Testit:: ~Testit()
 {
     dictionary1.~Que();
     dictionary2.~Que();
